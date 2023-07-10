@@ -31,27 +31,3 @@ plt.title('Yearly Average Temperature (1961-2019) with Trend Line')
 plt.legend()
 plt.grid(True)
 plt.show()
-
-def predict_temperature_change(year):
-    df = pd.read_csv("worldtemp.csv", encoding='cp1252')
-
-    # Calculate the yearly average temperatures
-    yearly_avg_temps = df.iloc[:, 2:].mean(axis=0)
-
-    # Store the average temperature values in a list
-    tempav = yearly_avg_temps.values.tolist()
-    for i in range(len(tempav)):
-        tempav[i] = round(tempav[i], 2)
-
-    # Generate the years range from 1961 to 2019
-    years = list(range(1961, 2020))
-
-    # Perform linear regression
-    X = np.array(years).reshape(-1, 1)
-    y = np.array(tempav).reshape(-1, 1)
-    reg = LinearRegression().fit(X, y)
-
-    # Predict temperature change for the input year
-    predicted_change = reg.predict(np.array(year).reshape(-1, 1))
-
-    return round(predicted_change[0][0], 2)

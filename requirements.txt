@@ -1,6 +1,5 @@
 Pillow
 streamlit
-Linearregression
 numpy
 pandas
 sklearn
