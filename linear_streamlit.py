@@ -12,8 +12,9 @@ env = Image.open("env.png")
 tree = Image.open("tree.png")
 earth = Image.open("earth.png")
 scenario = Image.open("scenario.jpg")
-system = Image.open("system.jpg")
 g = Image.open("graph.jpg")
+earthcase = Image.open("earthcase.jpg")
+graph1 = Image.open("graph1.png")
 
 #function
 def predict_temperature_change(year):
@@ -81,7 +82,7 @@ st.sidebar.write(f"""
 **{n}**년의 예상 기온 변화는 **{climate}°C** 입니다""")
 
 #main
-tab1, tab2, tab3, tab4= st.tabs(['Graph' , 'Global Warming', 'Warming Scenario', 'Problems&Solutions'])
+tab1, tab2, tab3, tab4= st.tabs(['Graph' , 'Global Warming', 'Warming Scenario', 'Problems & Solutions'])
 with tab1:
     st.title("Climate Change Data Analysis")
     st.subheader("with Linear Regression")
@@ -95,8 +96,10 @@ with tab1:
     st.write("Source: [Kaggle : Temperature change](%s)" % url)
 
 with tab4:
-    st.title("지구온난화 문제점 & 개선방안")
-    st.subheader("문제점")
+    st.title("Problems & Solutions")
+    for _ in range(2):
+        st.write('')
+    st.subheader("Problems")
     con, img = st.columns([3, 2])
     with con:
         st.write("""
@@ -119,7 +122,7 @@ with tab4:
         
         st.write('')
         st.write('')
-        st.subheader("해결방안")
+        st.subheader("Solutions")
         st.write("""
 **1. 재생 에너지 확대**
                  
@@ -158,8 +161,6 @@ with tab2: #global warming
         st.title("Global Warming")
         st.write('')
         st.subheader("지구온난화란 ?")
-        st.write('')
-        st.write('')
         st.write("""####
 **지구의 기온이 평균 이상으로 증가하는 현상** 
 """)
@@ -202,6 +203,70 @@ with tab2: #global warming
         st.write("ㅤㅤ▲지구 기온 변화 추이")
 
 with tab3: #warming scenario
-    st.title("지구온난화 시나리오")
-    for _ in range(3):
+    st.title("Global Warming Scenario")
+    st.subheader("지구 기후변화 시나리오")
+    content, image = st.columns([3, 2])
+    with content:
+        for _ in range(3):
+            st.write('')
+        st.write('- **지구 온도가 1°C 상승하면?**')
+        st.write('ㅤㅤ가뭄이 심각해짐')
+        st.write('ㅤㅤ물 부족 인구 50,000,000명')
+        st.write('ㅤㅤ10% 육상생물 멸종 위기')
+        st.write('ㅤㅤ기후변화로 인해 300,000명 사망')
+        st.write('ㅤㅤ킬리만자로의 만년빙 소멸')
+        st.write('ㅤㅤ희귀 동식물 멸종')
         st.write('')
+        st.write('- **지구 온도가 2°C 상승하면?**')
+        st.write('ㅤㅤ사용 가능한 물 20% ~ 30% 감소')
+        st.write('ㅤㅤ해빙으로 해수면 7m 상승')
+        st.write('ㅤㅤ15% ~ 40% 북극생물 멸종 위기')
+        st.write('ㅤㅤ말라리아 노출 최대 60,000,000명')
+        st.write('ㅤㅤ이산화탄소의 흡수로 바다생물이 죽어감')
+        st.write('ㅤㅤ저지대 도시 침수')
+        st.write('- **지구 온도가 3°C 상승하면?**')
+        st.write('ㅤㅤ기근으로 인한 사망 최대 3,000,000명')
+        st.write('ㅤㅤ해안침수 피해 연 160,000,000명')
+        st.write('ㅤㅤ20% ~ 50% 생물 멸종 위기')
+        st.write('ㅤㅤ아마존 열대우림 파괴')
+        st.write('ㅤㅤ허리케인으로 식량 생산 어려움')
+        st.write('ㅤㅤ화재 발생')
+        st.write('')
+        st.write('- **지구 온도가 4°C 상승하면?**')
+        st.write('ㅤㅤ사용 가능한 물 30 ~ 50% 감소')
+        st.write('ㅤㅤ해안침수 피해 연 300,000,000명')
+        st.write('ㅤㅤ아프리카 농산물 15% ~ 35% 감소')
+        st.write('ㅤㅤ서남극 빙상 붕괴 위험')
+        st.write('ㅤㅤ지중해 - 살인적인 폭염 및 가뭄')
+        st.write('ㅤㅤ러시아 & 동유럽 - 눈이 내리지 않음')
+        st.write('')
+        st.write('- **지구 온도가 5°C 상승하면?**')
+        st.write('ㅤㅤ군소도서국과 뉴욕, 런던 등 침수 위험')
+        st.write('ㅤㅤ재난으로 인한 자본시장 붕괴')
+        st.write('ㅤㅤ중국·인도 영향권 히말라야 빙하 소멸')
+        st.write('ㅤㅤ핵무기가 동원된 전쟁 발발')
+        st.write('ㅤㅤ거주 가능 지역에서 피난민 간 갈등 발생')
+        st.write('')
+        st.write('- **지구 온도가 6°C 상승하면?**')
+        st.write('ㅤㅤ메탄하이드레이트 대량 분출로 인한 생물체 대멸종')
+        st.write('')
+        st.write('')
+        st.write("-> 2018.10 IPCC : **지구온난화 1.5℃ 특별보고서** 채택")
+        st.write("현재 추세에 따르면 2040년경 1.5℃ 상승")
+        st.write("각별한 주의가 필요하다")
+
+        for _ in range(5):
+            st.write('')
+        ipcc = 'https://www.ipcc.ch/sr15/'
+        st.write("From: [IPCC : Global Warming of 1.5 ºC](%s)" % ipcc)
+    with image:
+        for _ in range(2):
+            st.write('')
+        st.image(scenario)
+        for _ in range(12):
+            st.write('')
+        st.image(earthcase)
+        st.write('지구의 기온별 상태')
+        for _ in range(20):
+            st.write('')
+        st.image(graph1)
