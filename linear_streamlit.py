@@ -10,6 +10,10 @@ map = Image.open("map.jpg")
 tub = Image.open("tub.jpg")
 env = Image.open("env.png")
 tree = Image.open("tree.png")
+earth = Image.open("earth.png")
+scenario = Image.open("scenario.jpg")
+system = Image.open("system.jpg")
+g = Image.open("graph.jpg")
 
 #function
 def predict_temperature_change(year):
@@ -69,17 +73,15 @@ graph = plt.gcf()
 
 #sidebar
 st.sidebar.image(img)
-n = st.sidebar.text_input("**기온변화 예상**")
-if n:
-    if n.isdigit():
-        climate = predict_temperature_change(int(n))
-        st.sidebar.write(f"""
+#n = st.sidebar.text_input("**기온변화 예상**")
+n = st.sidebar.slider("**기후변화 예상**", 2024, 2100)
+
+climate = predict_temperature_change(int(n))
+st.sidebar.write(f"""
 **{n}**년의 예상 기온 변화는 **{climate}°C** 입니다""")
-    else:
-        st.write("정수 값을 입력해주세요")
 
 #main
-tab1, tab2= st.tabs(['Graph' , 'Global Warming'])
+tab1, tab2, tab3, tab4= st.tabs(['Graph' , 'Global Warming', 'Warming Scenario', 'Problems&Solutions'])
 with tab1:
     st.title("Climate Change Data Analysis")
     st.subheader("with Linear Regression")
@@ -92,7 +94,7 @@ with tab1:
     url = 'https://www.kaggle.com/datasets/sevgisarac/temperature-change'
     st.write("Source: [Kaggle : Temperature change](%s)" % url)
 
-with tab2:
+with tab4:
     st.title("지구온난화 문제점 & 개선방안")
     st.subheader("문제점")
     con, img = st.columns([3, 2])
@@ -150,3 +152,56 @@ LED 전구 사용 확대, 고효율 가전제품 선택, 에너지 효율적인 
             st.write('')
         st.image(tree, width=250)
 
+with tab2: #global warming
+    cont, imge = st.columns([3, 2])
+    with cont:
+        st.title("Global Warming")
+        st.write('')
+        st.subheader("지구온난화란 ?")
+        st.write('')
+        st.write('')
+        st.write("""####
+**지구의 기온이 평균 이상으로 증가하는 현상** 
+""")
+        st.write('')
+        st.write("""
+2021년 기준 과거보다 **1.49°C**가량 증가했다
+
+2021년 IPCC 6차 보고서에서는
+
+이산화 탄소, 메테인, 질산, 할로젠 가스를 원인으로
+규정하고 있다
+""")
+        for _ in range(2):
+            st.write('')
+        st.write("""
+- 발생한 재난 사례
+                 
+    2010년 | 중부권 폭설 사태, 한반도 폭우, 퀸즈랜드 홍수
+                 
+    2011년 | 1월 한파, 중부권 폭우 사태, 캘리포니아 가뭄
+
+    2015년 | 슈퍼 엘니뇨, 인도-파키스탄 폭염
+                 
+    2016년 | 두만강 유역 대홍수
+                 
+    2018년 | 일본 호우, 캘리포니아 산불
+                 
+    2019년 | 범지구적 이상 고온, 시베리아 산불
+                 
+    2020년 | 미국 서부 산불, 아시아 폭우 사태
+
+                 
+""")
+    with imge:
+        for _ in range(10):
+            st.write('')
+        st.image(earth)
+        st.subheader('')
+        st.image(g)
+        st.write("ㅤㅤ▲지구 기온 변화 추이")
+
+with tab3: #warming scenario
+    st.title("지구온난화 시나리오")
+    for _ in range(3):
+        st.write('')
