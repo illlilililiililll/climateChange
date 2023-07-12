@@ -79,14 +79,14 @@ n = st.sidebar.slider("**기후변화 예상**", 2024, 2100)
 
 climate = predict_temperature_change(int(n))
 st.sidebar.write(f"""
-**{n}**년의 예상 기온 변화는 **{climate}°C** 입니다""")
+**{n}**년엔 지구의 온도가 **{climate}°C** 상승합니다""")
 
 #main
 tab1, tab2, tab3, tab4= st.tabs(['Graph' , 'Global Warming', 'Warming Scenario', 'Problems & Solutions'])
 with tab1:
     st.title("Climate Change Data Analysis")
     st.subheader("with Linear Regression")
-    st.header('')
+    st.header('')   
     st.pyplot(graph)
 
     st.write("""1961년부터 2021년까지의 세계 기후 변화를 분석한 그래프입니다""")
