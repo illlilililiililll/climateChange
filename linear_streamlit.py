@@ -289,7 +289,7 @@ with tab5:
         return articles_dict
     
     def main():
-        st.title("지구온난화 관련 최신 기사")
+        st.title("News on Global Warming")
         st.subheader('from [REUTERS](%s)'%'https://www.reuters.com')
         st.write('')
         st.write('')
