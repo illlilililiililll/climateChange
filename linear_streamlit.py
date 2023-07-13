@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from PIL import Image
+import requests
+from bs4 import BeautifulSoup
 
 img = Image.open("ill.png")
 map = Image.open("map.jpg")
@@ -82,7 +84,7 @@ st.sidebar.write(f"""
 **{n}**년엔 지구의 온도가 **{climate}°C** 상승합니다""")
 
 #main
-tab1, tab2, tab3, tab4= st.tabs(['Graph' , 'Global Warming', 'Warming Scenario', 'Problems & Solutions'])
+tab1, tab2, tab3, tab4, tab5= st.tabs(['Graph' , 'Global Warming', 'Warming Scenario', 'Problems & Solutions', 'News'])
 with tab1:
     st.title("Climate Change Data Analysis")
     st.subheader("with Linear Regression")
@@ -270,3 +272,30 @@ with tab3: #warming scenario
         for _ in range(20):
             st.write('')
         st.image(graph1)
+
+with tab5:
+    def get_articles():
+        url = "https://www.reuters.com/search/news?blob=global+warming&sortBy=date&dateRange=all"
+        r = requests.get(url)
+        soup = BeautifulSoup(r.text, 'html.parser')
+        articles = soup.find_all('div', class_='search-result-content')
+        articles_dict = {}
+
+        for article in articles:
+            title = article.find('h3', class_='search-result-title').text
+            link = 'https://www.reuters.com' + article.find('a')['href']
+            articles_dict[title] = link
+
+        return articles_dict
+    
+    def main():
+        st.title("지구온난화 관련 최신 기사")
+        st.subheader('from REUTERS')
+        st.write('')
+        st.write('')
+        articles = get_articles()
+        for title, link in articles.items():
+            st.write(f"[{title}]({link})")
+            for _ in range(2):
+                st.write('')
+    main()
